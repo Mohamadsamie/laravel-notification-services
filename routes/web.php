@@ -1,5 +1,8 @@
 <?php
 
+use App\Mail\TopicCreated;
+use App\Mail\UserRegistered;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +19,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/email', function () {
+    Mail::to("mohamad.samieshad@gmail.com")->send(new TopicCreated);
+}); //route without markdown
+
+Route::get('/email-m', function () {
+    Mail::to("mohamad.samieshad@gmail.com")->send(new UserRegistered);
+}); //route with markdown
